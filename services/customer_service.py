@@ -9,8 +9,7 @@ class CustomerService:
     def create_customer(self, customer):
 
         if not customer.get("email"):
-            raise ValueError("Customer email is required")
-
+            raise ValueError("Missing required field: email. Please provide a valid customer email.")
         return self.repository.create(customer)
 
     def get_all_customers(self):
