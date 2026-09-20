@@ -26,12 +26,11 @@ def test_create_repair_requires_device():
     }
 
     # Capture and verify the exact message raised by the service.
-    with pytest.raises(ValueError, match="^Device is required$") as error:
+    with pytest.raises(ValueError, match="^Missing required field: device. Please provide the device name.$") as error:
         service.create_repair(repair_missing_device)
 
     print(error.value)
-    assert str(error.value) == "Device is required"
-
+    assert str(error.value) == "Missing required field: device. Please provide the device name."
 
 # Verify that unsupported repair statuses are rejected.
 def test_create_repair_rejects_invalid_status():
@@ -43,8 +42,8 @@ def test_create_repair_rejects_invalid_status():
     }
 
     # Capture and verify the exact message raised by the service.
-    with pytest.raises(ValueError, match="^Invalid repair status$") as error:
+    with pytest.raises(ValueError, match=f"^Invalid repair status: {repair_invalid_status.get('status')}. Allowed statuses are: Pending, In Progress, Completed.$") as error:
         service.create_repair(repair_invalid_status)
 
     print(error.value)
-    assert str(error.value) == "Invalid repair status"
+    assert str(error.value) == f"Invalid repair status: {repair_invalid_status.get('status')}. Allowed statuses are: Pending, In Progress, Completed."

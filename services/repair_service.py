@@ -9,10 +9,10 @@ class RepairService:
     def create_repair(self, repair):
 
         if not repair.get("device"):
-            raise ValueError("Device is required")
+            raise ValueError("Missing required field: device. Please provide the device name.")
 
         if repair.get("status") not in ["Pending", "In Progress", "Completed"]:
-            raise ValueError("Invalid repair status")
+            raise ValueError(f"Invalid repair status: {repair.get('status')}. Allowed statuses are: Pending, In Progress, Completed.")
 
         return self.repository.create(repair)
 
