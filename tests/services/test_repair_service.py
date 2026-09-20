@@ -37,6 +37,7 @@ def test_create_repair_requires_device():
 def test_create_repair_rejects_invalid_status():
     service = RepairService()
     repair_invalid_status = {
+        "repair_id": "R002",
         "device": "HP Laptop",
         "status": "Unknown"
     }
