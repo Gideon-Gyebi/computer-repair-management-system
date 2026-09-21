@@ -26,8 +26,8 @@ def test_create_customer_requires_email():
         "name": "Wendy"
     }
    # Capture and verify the exact message raised by the customer service.
-    with pytest.raises(ValueError, match="^Customer email is required$") as error:
+    with pytest.raises(ValueError, match="^Missing required field: email. Please provide a valid customer email.$") as error:
         service.create_customer(customer_missing_email)
 
     print(error.value)
-    assert str(error.value) == "Customer email is required"
+    assert str(error.value) == "Missing required field: email. Please provide a valid customer email."
