@@ -26,9 +26,8 @@ def test_create_technician_requires_specialization():
         "name": "John"
     }
 
-    with pytest.raises(ValueError, match="^Specialization is required$") as error:
+    with pytest.raises(ValueError, match="^Missing required field: specialization. Please provide a valid technician specialization.$") as error:
         service.create_technician(technician_2)
     
     print(error.value)
-    assert str(error.value) == "Specialization is required"
-    
+    assert str(error.value) == "Missing required field: specialization. Please provide a valid technician specialization."

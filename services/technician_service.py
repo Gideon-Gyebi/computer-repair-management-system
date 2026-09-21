@@ -9,7 +9,7 @@ class TechnicianService:
     def create_technician(self, technician):
 
         if not technician.get("specialization"):
-            raise ValueError("Specialization is required")
+            raise ValueError("Missing required field: specialization. Please provide a valid technician specialization.")
 
         return self.repository.create(technician)
 
